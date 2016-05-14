@@ -13,7 +13,25 @@ var ListingSchema = new Schema({
   name: {
     type: String,
     default: '',
-    required: 'Please fill Listing name',
+    required: 'Please fill Listing title',
+    trim: true
+  },
+  desc: {
+    type: String,
+    default: '',
+    required: 'Please fill Listing desc',
+    trim: true
+  },
+  startCost: {
+    type: Number,
+    default: '',
+    required: 'Please fill min price',
+    trim: true
+  },
+  closeDate: {
+    type: Date,
+    default: '',
+    required: 'Please fill date',
     trim: true
   },
   created: {
