@@ -1,6 +1,9 @@
 <section>
   <div class="page-header">
     <h1 data-ng-bind="vm.listing.name"></h1>
+    <h2 data-ng-bind="vm.listing.desc"></h2>
+    <h3><strong>Auction Ends:</strong> {{vm.listing.closeDate}}</h3>
+    <span>timer<timer><timer/></span>
   </div>
   <div class="pull-right"
        data-ng-show="vm.listing.isCurrentUserOwner">

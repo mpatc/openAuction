@@ -10,7 +10,6 @@
 
   function ListingsController ($scope, $state, Authentication, listing) {
     var vm = this;
-
     vm.authentication = Authentication;
     vm.listing = listing;
     vm.error = null;

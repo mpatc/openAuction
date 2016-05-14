@@ -9,9 +9,16 @@ var path = require('path'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
   nodemailer = require('nodemailer'),
+  // xoauth = require('xoauth2'),
   async = require('async'),
   crypto = require('crypto');
 
+
+  // listen for token updates (if refreshToken is set)
+  // you probably want to store these to a db
+// generator.on('token', function(token){
+//   console.log('New token for %s: %s', token.user, token.accessToken);
+// });
 var smtpTransport = nodemailer.createTransport(config.mailer.options);
 
 /**
