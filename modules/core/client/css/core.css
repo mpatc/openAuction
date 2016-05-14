@@ -38,6 +38,6 @@ a:hover .header-profile-image {
 .btn {
   color: black;
 }
-:hover {
-  color: limegreen;
+p:hover, h1:hover, h2:hover, .navbar-nav > li > .dropdown-menu > li:hover{
+  color: #408000;
 }
