@@ -22,6 +22,27 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
     });
     // Create a controller for BLAST button
     $scope.sendBlast = function () {
+      console.log('msg; ', $scope.messages[0].text)
+      var old = parseInt($scope.messages[0].text)
+      var myCard = Math.floor(Math.random()*13) + 1
+      if (old > myCard) {
+        var message = {
+          text: myCard + ' Your Card ' + ' is higher than ' + old + ' SO YOU WIN!'
+        };
+      } else if (old === myCard) {
+        var message = {
+          text: myCard + ' Your Card ' + ' is the same as ' + old + ' SO YOU TIE!'
+        };
+      } else {
+        var message = {
+          text: myCard + ' Your Card ' + ' is lower than ' + old +' SO YOU LOSE!'
+        };
+      }
+
+      Socket.emit('chatMessage', message)
+    };
+
+    $scope.guessBlast = function () {
       var dealerUp = Math.floor(Math.random()*13) + 1
       var dealerDown = Math.floor(Math.random()*13) + 1
       var message = {
