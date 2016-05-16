@@ -22,9 +22,10 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
     });
     // Create a controller for BLAST button
     $scope.sendBlast = function () {
-      console.log("blasted");
+      var dealerUp = Math.floor(Math.random()*13) + 1
+      var dealerDown = Math.floor(Math.random()*13) + 1
       var message = {
-        text: 'BBBLLLAAAAHHHHHHHH!!!! this is a BLAST! ㅂㅃㅃㅃㅃㅃ빠라아쓰트!!!!!!'
+        text: dealerUp
       };
       Socket.emit('chatMessage', message);
     };

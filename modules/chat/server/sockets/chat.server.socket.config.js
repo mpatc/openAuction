@@ -22,6 +22,8 @@ module.exports = function (io, socket) {
     io.emit('chatMessage', message);
   });
 
+  // Emit the status when
+
   // Emit the status event when a socket client is disconnected
   socket.on('disconnect', function () {
     io.emit('chatMessage', {

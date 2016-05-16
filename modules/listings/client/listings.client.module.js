@@ -1,5 +1,9 @@
-(function (app) {
-  'use strict';
+// (function (app) {
+//   'use strict';
+//
+//   app.registerModule('listings');
+// })(ApplicationConfiguration);
+'use strict';
 
-  app.registerModule('listings');
-})(ApplicationConfiguration);
+ApplicationConfiguration.registerModule('listings');
+ApplicationConfiguration.registerModule('listings', ['core']);

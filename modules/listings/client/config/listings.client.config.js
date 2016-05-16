@@ -18,7 +18,7 @@
 
     // Add the dropdown list item
     Menus.addSubMenuItem('topbar', 'listings', {
-      title: 'List Listings',
+      title: 'Show All the Listings',
       state: 'listings.list'
     });
 

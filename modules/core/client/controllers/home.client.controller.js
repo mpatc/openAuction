@@ -1,9 +1,11 @@
 'use strict';
 
-angular.module('core').controller('HomeController', ['$scope', 'listingResolve', 'Authentication',
-  function ($scope, Authentication, listings) {
+angular.module('core').controller('HomeController', ['$scope', 'ListingsService', 'Authentication',
+  function ($scope, Authentication, ListingsService) {
     // This provides Authentication context.
     $scope.authentication = Authentication;
-    $scope.listings = listings;
+    $scope.listings = ListingsService;
+    console.log('Auth: ', Authentication)
+    // console.log('listings: ', listings);
   }
 ]);
