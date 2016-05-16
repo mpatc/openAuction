@@ -20,7 +20,7 @@
         controller: 'ListingsListController',
         controllerAs: 'vm',
         data: {
-          pageTitle: 'Listings List'
+          pageTitle: 'View All Listings'
         }
       })
       .state('listings.create', {

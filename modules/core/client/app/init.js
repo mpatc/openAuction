@@ -6,6 +6,7 @@ angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfig
 // Setting HTML5 Location Mode
 angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider', '$httpProvider',
   function ($locationProvider, $httpProvider) {
+    console.log('loc provid:', $locationProvider);
     $locationProvider.html5Mode(true).hashPrefix('!');
 
     $httpProvider.interceptors.push('authInterceptor');
@@ -45,7 +46,7 @@ angular.module(ApplicationConfiguration.applicationModuleName).run(function ($ro
 
   // Store previous state
   function storePreviousState(state, params) {
-    // only store this state if it shouldn't be ignored 
+    // only store this state if it shouldn't be ignored
     if (!state.data || !state.data.ignoreState) {
       $state.previous = {
         state: state,

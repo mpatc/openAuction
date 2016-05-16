@@ -20,6 +20,14 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
     Socket.on('chatMessage', function (message) {
       $scope.messages.unshift(message);
     });
+    // Create a controller for BLAST button
+    $scope.sendBlast = function () {
+      console.log("blasted");
+      var message = {
+        text: 'BBBLLLAAAAHHHHHHHH!!!! this is a BLAST! ㅂㅃㅃㅃㅃㅃ빠라아쓰트!!!!!!'
+      };
+      Socket.emit('chatMessage', message);
+    };
 
     // Create a controller method for sending messages
     $scope.sendMessage = function () {

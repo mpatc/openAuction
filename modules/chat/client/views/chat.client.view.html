@@ -1,8 +1,18 @@
 <!-- The chat view -->
 <section class="container" ng-controller="ChatController">
   <div class="page-header">
-    <h1>Chat Example</h1>
+    <h1>OpenAuction Chat!</h1>
   </div>
+  <form class="col-xs-12 col-md-offset-4 col-md-4" ng-submit="sendBlast();">
+    <fieldset class="row">
+      <div class="input-group">
+        <input type="text" id="messageText" name="messageText" class="form-control" placeholder="Enter your BLAST!">
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-danger">SEND A BLAST!!!</button>
+        </span>
+      </div>
+    </fieldset>
+  </form>
   <!-- The message form -->
   <form class="col-xs-12 col-md-offset-4 col-md-4" ng-submit="sendMessage();">
     <fieldset class="row">

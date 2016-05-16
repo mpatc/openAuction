@@ -24,7 +24,7 @@
 
     // Add the dropdown create item
     Menus.addSubMenuItem('topbar', 'listings', {
-      title: 'Create Listing',
+      title: 'Create Listing To Sell',
       state: 'listings.create',
       roles: ['user']
     });

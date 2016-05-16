@@ -56,6 +56,7 @@ module.exports = function (app, db) {
   } else {
     // Create a new HTTP server
     server = http.createServer(app);
+    // console.log('server.domain: ', server._events);
   }
   // Create a new Socket.io server
   var io = socketio.listen(server);

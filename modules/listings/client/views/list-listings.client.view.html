@@ -13,7 +13,9 @@
         <span data-ng-if="listing.user" data-ng-bind="listing.user.displayName"></span>
         <span data-ng-if="!listing.user">Deleted User</span>
       </small>
-      <h4 class="list-group-item-heading" data-ng-bind="listing.name"></h4>
+      <!-- <h4 class="list-group-item-heading" data-ng-bind="listing.name"></h4> -->
+      <h4 class="list-group-item-heading">Name: {{listing.name}}</h4>
+      
     </a>
   </div>
   <div class="alert alert-warning text-center" data-ng-if="vm.listings.$resolved && !vm.listings.length">

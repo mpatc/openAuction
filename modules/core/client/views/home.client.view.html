@@ -11,7 +11,43 @@
         Simple Example Auction/eCommerce node.js app.
       </p>
     </div>
-  <div class="row">
+<h1>List of Things for Sale:</h1>
+<div class="list-group">
+  <a data-ng-repeat="listing in listings"
+     data-ui-sref="listings.view({ listingId: listing._id })"
+     class="list-group-item">
+    <small class="list-group-item-text">
+      Posted on
+      <span data-ng-bind="listing.created | date:'mediumDate'"></span>
+      by
+      <span data-ng-if="listing.user" data-ng-bind="listing.user.displayName"></span>
+      <span data-ng-if="!listing.user">Deleted User</span>
+    </small>
+    <!-- <h4 class="list-group-item-heading" data-ng-bind="listing.name"></h4> -->
+    <h4 class="list-group-item-heading">Name: {{listing.name}}</h4>
+
+  </a>
+</div>
+
+    <!-- <div class="row list-group">
+      <div class="col-md-3 list-group-item"
+      data-ng-repeat="listing in vm.listings"
+      data-ui-sref="listings.view({ listingId: listing._id })">
+        <small class="list-group-item-text">
+          Posted on
+          <span data-ng-bind="listing.created | date:'mediumDate'"></span>
+          by
+          <span data-ng-if="listing.user" data-ng-bind="listing.user.displayName"></span>
+          <span data-ng-if="!listing.user">Deleted User</span>
+        </small>
+        <h2>Name:{{listing.name}}</h2>
+        <p>Description: {{listing.desc}}</p>
+        <p>Starting Offer: {{listing.startCost | currency}}</p>
+        <p>Closing Date: {{listing.closeDate}}</p>
+      </div>
+    </div> -->
+
+  <!-- <div class="row">
     <div class="col-md-3">
       <h2><strong>I</strong>tem Title here</h2>
       <p>This is the description of an item for sale. I can say anthhing I want here to describe it. I can use words like brown, red, big, tall, delicious, wonderful, exciting, ect. This is a good way for the website to make money!<p>
@@ -28,7 +64,7 @@
       <h2><strong>I</strong>tem Title here</h2>
       <p>This is the description of an item for sale. I can say anthhing I want here to describe it. I can use words like brown, red, big, tall, delicious, wonderful, exciting, ect. This is a good way for the website to make money!<p>
     </div>
-  </div>
+  </div> -->
   <div class="well">
     <h2>OpenAuction Docs</h2>
     <p> They will go here</p>
