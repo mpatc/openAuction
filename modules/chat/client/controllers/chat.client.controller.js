@@ -6,6 +6,7 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
     // Create a messages array
     $scope.messages = [];
     $scope.score = 0;
+    $scope.over = false;
     $scope.counter = 0;
     $scope.scores = [];
     for (var i = 0; i < 9; i++) {
@@ -31,6 +32,7 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
     });
     $scope.sendGameText = function () {
       var message = {};
+      $scope.over = true;
       if ($scope.messages[0].text === 'go') {
         message = {
           text: $scope.score

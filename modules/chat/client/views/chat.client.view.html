@@ -4,7 +4,7 @@
     <h1>OpenAuction Chat!</h1>
     <h2>This is a basic 1 player chat game. Pick a number 1 to 10, if you beat the dealer, you win!</h2>
 
-    <table><tr ng-repeat="score in scores track by $index"><td>{{score}}</td></tr></table>
+    <table ng-show="over"><tr ng-repeat="score in scores track by $index"><td>{{score}}</td></tr></table>
 
 
 
