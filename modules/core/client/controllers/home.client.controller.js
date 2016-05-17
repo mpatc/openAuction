@@ -5,7 +5,7 @@ angular.module('core').controller('HomeController', ['$scope', 'ListingsService'
     // This provides Authentication context.
     $scope.authentication = Authentication;
     $scope.listings = ListingsService;
-    console.log('Auth: ', Authentication)
+    console.log('Auth: ', Authentication);
     // console.log('listings: ', listings);
   }
 ]);

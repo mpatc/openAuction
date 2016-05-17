@@ -5,6 +5,15 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
   function ($scope, $location, Authentication, Socket) {
     // Create a messages array
     $scope.messages = [];
+    $scope.score = 0;
+    $scope.counter = 0;
+    $scope.scores = [];
+    for (var i = 0; i < 9; i++) {
+
+      var x = Math.floor(Math.random()*100) + 1;
+
+      $scope.scores.push(x);
+    }
 
     // If user is not signed in then redirect back home
     if (!Authentication.user) {
@@ -20,36 +29,71 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
     Socket.on('chatMessage', function (message) {
       $scope.messages.unshift(message);
     });
-    // Create a controller for BLAST button
-    $scope.sendBlast = function () {
-      console.log('msg; ', $scope.messages[0].text)
-      var old = parseInt($scope.messages[0].text)
-      var myCard = Math.floor(Math.random()*13) + 1
-      if (old > myCard) {
-        var message = {
-          text: myCard + ' Your Card ' + ' is higher than ' + old + ' SO YOU WIN!'
+    $scope.sendGameText = function () {
+      var message = {};
+      if ($scope.messages[0].text === 'go') {
+        message = {
+          text: $scope.score
         };
-      } else if (old === myCard) {
-        var message = {
-          text: myCard + ' Your Card ' + ' is the same as ' + old + ' SO YOU TIE!'
-        };
+      } else if (!isNaN($scope.messages[0].text)) {
+        var theirs = $scope.messages[0].text;
+        var yours = $scope.messages[0].username;
+        if ($scope.score > theirs) {
+          message = {
+            text: 'hahahahaha ' + yours + 'I pwnd you! ' + $scope.score + ' is better than ' + theirs
+          };
+        } else if ($scope.score < theirs) {
+          message = {
+            text: 'boohooboohoo ' + yours + 'I hate you! YOU WIN! ' + $scope.score + ' is lower than ' + theirs
+          };
+        } else {
+          message = {
+            text: 'wow it is a tie'
+          };
+        }
       } else {
-        var message = {
-          text: myCard + ' Your Card ' + ' is lower than ' + old +' SO YOU LOSE!'
+        message = {
+          text: 'go'
         };
       }
-
-      Socket.emit('chatMessage', message)
-    };
-
-    $scope.guessBlast = function () {
-      var dealerUp = Math.floor(Math.random()*13) + 1
-      var dealerDown = Math.floor(Math.random()*13) + 1
-      var message = {
-        text: dealerUp
-      };
       Socket.emit('chatMessage', message);
     };
+
+    // Create a controller for BLAST button
+    $scope.sendBlast = function () {
+      console.log('msg; ', $scope.messages[0].text);
+      $scope.counter++;
+      var your = this.blastText;
+      var yourGuess = $scope.scores[your - 1];
+      console.log('yourGuess:', yourGuess);
+      var myCard = Math.floor(Math.random()*10) + 1;
+      var message = {};
+      $scope.score = $scope.score + yourGuess;
+      message = {
+        text: 'I made my ' + $scope.counter + ' guess'
+      };
+      // } else if (yourGuess === myCard) {
+      //   $scope.score = $scope.score + 5
+      //   message = {
+      //     text: myCard + ' (my card) ' + ' is the same as ' + yourGuess + ' SO YOU WIN JACKPOT!!!!'
+      //   };
+      // } else {
+      //   $scope.score = $scope.score - 3
+      //   message = {
+      //     text: myCard + ' (my card) ' + ' is higher than ' + yourGuess +' SO YOU LOSE!'
+      //   };
+      // }
+      Socket.emit('chatMessage', message);
+    };
+
+    // $scope.guessBlast = function () {
+    //   var dealerUp = Math.floor(Math.random()*13) + 1
+    //   var dealerDown = Math.floor(Math.random()*13) + 1
+    //   var message = {
+    //     text: dealerUp
+    //   };
+    //   Socket.emit('chatMessage', message);
+    // };
 
     // Create a controller method for sending messages
     $scope.sendMessage = function () {
