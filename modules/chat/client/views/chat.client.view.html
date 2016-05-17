@@ -2,9 +2,12 @@
 <section class="container" ng-controller="ChatController">
   <div class="page-header">
     <h1>OpenAuction Chat!</h1>
+    <button name="game1" ng-submit="pickGame1();" class="btn btn-primary">Game 1</button>
+    <button name="" type="submit" class="btn btn-primary">Game 2</button>
+    <button name="" type="submit" class="btn btn-primary">Game 3</button>
     <h2>This is a basic 2 player chat game. Pick a number 1 to 10, if you beat the dealer, you win!</h2>
 
-    <table ng-show="over"><tr ng-repeat="score in scores track by $index"><td>{{score}}</td></tr></table>
+    <table ng-show="over"><button class="btn btn-success btn-xs">PLAY</button><tr ng-repeat="score in scores track by $index"><td>{{score}}</td></tr></table>
 
 
 
@@ -16,12 +19,17 @@
 
     <h3>You only get 3 choices! This is your count {{counter}}</h3>
     <h3>TEST! This is your score {{score}}</h3>
+    <h3>TEST! This is userCount {{usercount}}</h3>
 
+    <h4></h4>
   </div>
+  <div data-ng-show="Mcount">You are even </div>
+  <div data-ng-show="!Mcount">You are odd </div>
+
   <form class="col-xs-12 col-md-offset-4 col-md-4" ng-submit="sendBlast();">
     <fieldset class="row">
       <div class="input-group input-group-sm">
-        <input type="number" min="1" max="9" id="blastText" name="blastText" ng-model="blastText" class="form-control" placeholder="Enter your BLAST!">
+        <input type="number" min="1" max="9" id="blastText" name="blastText" ng-model="blastText" class="form-control" placeholder="Enter your BLAST!" required>
         <span class="input-group-btn">
           <button type="submit" class="btn btn-danger" ng-disabled="counter >= 3">Guess A Number!!!</button>
         </span>

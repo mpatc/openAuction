@@ -7,7 +7,9 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
     $scope.messages = [];
     $scope.score = 0;
     $scope.over = false;
+    $scope.usercount = 0;
     $scope.counter = 0;
+    $scope.Mcount = true;
     $scope.scores = [];
     for (var i = 0; i < 9; i++) {
 
@@ -28,21 +30,33 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
 
     // Add an event listener to the 'chatMessage' event
     Socket.on('chatMessage', function (message) {
+      $scope.usercount = message.data;
+      // console.log('incoming msg: ', message);
+      // if (message.type === 'status' && message.text === 'Is playin') {
+      //   $scope.usercount++;
+      // } else if (message.type === 'status' && message.text !== 'Is playin'){
+      //   $scope.usercount--;
+      // }
       $scope.messages.unshift(message);
     });
+    $scope.pickGame1 = function () {
+      console.log('butt');
+      $scope.gamefirst = true;
+    };
     $scope.sendGameText = function () {
       var message = {};
       $scope.over = true;
-      if ($scope.messages[0].text === 'go') {
+      if ($scope.messages[0].text === 'I am even') {
+        $scope.Mcount = false;
         message = {
           text: $scope.score
         };
-      } else if (!isNaN($scope.messages[0].text)) {
+      } else if (!isNaN($scope.messages[0].text)){
         var theirs = $scope.messages[0].text;
         var yours = $scope.messages[0].username;
-        if ($scope.score > theirs) {
+        if (theirs + $scope.score%2 === 1){
           message = {
-            text: 'hahahahaha ' + yours + ' I pwnd you! ' + $scope.score + ' is better than ' + theirs
+            text: 'hahahahaha ' + yours + ' I pwnd you! ' + $scope.score + ' + ' + theirs + ' = ODD'
           };
         } else if ($scope.score < theirs) {
           message = {
@@ -55,9 +69,10 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
         }
       } else {
         message = {
-          text: 'go'
+          text: 'I am even'
         };
       }
+
       Socket.emit('chatMessage', message);
     };
 
@@ -65,8 +80,8 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
     $scope.sendBlast = function () {
       console.log('msg; ', $scope.messages[0].text);
       $scope.counter++;
-      var your = this.blastText;
-      var yourGuess = $scope.scores[your - 1];
+      var yourGuess = this.blastText;
+      // var yourGuess = $scope.scores[your - 1];
       console.log('yourGuess:', yourGuess);
       var myCard = Math.floor(Math.random()*10) + 1;
       var message = {};
@@ -74,30 +89,10 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
       message = {
         text: 'I made my ' + $scope.counter + ' guess'
       };
-      // } else if (yourGuess === myCard) {
-      //   $scope.score = $scope.score + 5
-      //   message = {
-      //     text: myCard + ' (my card) ' + ' is the same as ' + yourGuess + ' SO YOU WIN JACKPOT!!!!'
-      //   };
-      // } else {
-      //   $scope.score = $scope.score - 3
-      //   message = {
-      //     text: myCard + ' (my card) ' + ' is higher than ' + yourGuess +' SO YOU LOSE!'
-      //   };
-      // }
       Socket.emit('chatMessage', message);
     };
 
-    // $scope.guessBlast = function () {
-    //   var dealerUp = Math.floor(Math.random()*13) + 1
-    //   var dealerDown = Math.floor(Math.random()*13) + 1
-    //   var message = {
-    //     text: dealerUp
-    //   };
-    //   Socket.emit('chatMessage', message);
-    // };
 
-    // Create a controller method for sending messages
     $scope.sendMessage = function () {
       // Create a new message object
       var message = {

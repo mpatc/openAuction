@@ -26,6 +26,7 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
     // Wrap the Socket.io 'emit' method
     this.emit = function (eventName, data) {
       if (this.socket) {
+        console.log('this.socket: ', this.socket);
         this.socket.emit(eventName, data);
       }
     };
