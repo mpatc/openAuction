@@ -48,7 +48,7 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
           };
         } else {
           message = {
-            text: 'wow it is a tie ' + yours + ' is the same as ' $scope.score
+            text: 'wow it is a tie ' + yours + ' is the same as ' + $scope.score
           };
         }
       } else {
