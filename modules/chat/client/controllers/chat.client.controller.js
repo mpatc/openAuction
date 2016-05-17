@@ -40,15 +40,15 @@ angular.module('chat').controller('ChatController', ['$scope', '$location', 'Aut
         var yours = $scope.messages[0].username;
         if ($scope.score > theirs) {
           message = {
-            text: 'hahahahaha ' + yours + 'I pwnd you! ' + $scope.score + ' is better than ' + theirs
+            text: 'hahahahaha ' + yours + ' I pwnd you! ' + $scope.score + ' is better than ' + theirs
           };
         } else if ($scope.score < theirs) {
           message = {
-            text: 'boohooboohoo ' + yours + 'I hate you! YOU WIN! ' + $scope.score + ' is lower than ' + theirs
+            text: 'boohooboohoo ' + yours + ' I hate you! YOU WIN! ' + $scope.score + ' is lower than ' + theirs
           };
         } else {
           message = {
-            text: 'wow it is a tie'
+            text: 'wow it is a tie ' + yours + ' is the same as ' $scope.score
           };
         }
       } else {
